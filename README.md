@@ -1,6 +1,6 @@
 # Ruby Savon Examples
 
-Working project to experiement with the Ruby [Savon](http://savonrb.com/) SOAP client.  [example01.rb](blob/master/example01.rb) contains the example code.
+Working project to experiement with the Ruby [Savon](http://savonrb.com/) SOAP client.  [example01.rb](example01.rb) contains the example code.
 
 ## Getting Started 
 
