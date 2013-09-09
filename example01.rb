@@ -9,7 +9,9 @@ require 'pp'
 USERNAME = ENV['USERNAME']
 PASSWORD = ENV['PASSWORD']
 
-wsdl_url = 'http://localhost:12764/partner.wsdl'
+wsdl_url = 'http://localhost:8000/partner.wsdl'
+apex_wsdl_url = 'http://localhost:8000/apex.wsdl'
+
 client = Savon::Client.new(wsdl: wsdl_url)
 
 # login
@@ -25,7 +27,6 @@ client.globals[:soap_header] = {'ins0:SessionHeader' => {'ins0:sessionId' => ses
 response = client.call(:query, message: {query: 'select id, name from account limit 5'})
 
 # apex ws
-apex_wsdl_url = 'http://localhost:12764/apex.wsdl'
 ac = Savon::Client.new(wsdl: apex_wsdl_url)
 ac.globals[:soap_header] = {'tns:SessionHeader' => {'tns:sessionId' => session_id }, 'tns:DebuggingInfo' => {'debugLog' => 'DEBUG'}, 'tns:DebuggingHeader' => {'debugLevel' => 'Debugonly', }, 'tns:LogInfo' => {'category' => 'All', 'level' => 'Debug'} }
 response = ac.call(:execute_anonymous, message: {String: 'System.debugz(\'hello\\nworld\');'})
